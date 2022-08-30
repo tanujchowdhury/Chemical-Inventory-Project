@@ -86,3 +86,5 @@ def inventory_bs(request):
     content = {"info": info}
     return render(request, 'Inventory/inventory_bs.html', content)
 ```
+
+*[Jump to Top](#Chemical-Inventory-Project)
