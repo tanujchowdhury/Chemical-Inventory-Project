@@ -87,4 +87,4 @@ def inventory_bs(request):
     return render(request, 'Inventory/inventory_bs.html', content)
 ```
 
-*[Jump to Top](#Chemical-Inventory-Project)
+*[Jump to Top](#Chemical-Inventory-Project)*
