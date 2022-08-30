@@ -1,14 +1,14 @@
 # ChemicalInventoryProject
 
 ## Introduction
-During my time at the Tech Academy, I worked with a group of peers to make a full-stack web-app using Django that could connect to a database and had full CRUD functionality. We had opportunities to work on front-end and back-end stories, with varying degrees of difficulty. Each of us worked individually on our separate applications, but the apps were all integrated into the same legacy codebase. This project was a great opportunity to learn about the MVC design philopsphy and work as part of a team using AGILE methodolgy. The topic I chose was a chemical invetory application a lab manager might use to keep track of their lab's in-house materials. The app also connects to an API and includes a web-scrapper. Over the two-week sprint I utilized project management skills that I can use in my futre projects. 
+During my time at the Tech Academy, I worked with a group of peers to make a full-stack web-app using Django that could connect to a database and had full CRUD functionality. We had opportunities to work on front-end and back-end stories, with varying degrees of difficulty. Each of us worked individually on our separate applications, but the apps were all integrated into the same legacy codebase. This project was a great opportunity to learn about the MVC design philopsphy and work as part of a team using AGILE methodolgy. The topic I chose was a chemical invetory application a lab manager might use to keep track of their lab's in-house materials. The app also connects to an API and includes a web-scraper. Over the two-week sprint I utilized project management skills that I can use in my futre projects. 
 
 Below are the descriptions of the major stories I worked on with some code snippets
 
 ## Stories
 * CRUD Pages
 * API
-* Web Scrapping
+* Web Scraping
 
 ### CRUD Pages
 The create, read, details, update, and delete pages used HTTP GET/POST methods to display content on the page. Below are the methods in Views to accomplish each task. 
@@ -53,7 +53,7 @@ def inventory_delete(request, pk):
 ```
 
 ### API
-Although not related to chemical invertory, my app features connects to an API and displays the current temperature in San Jose, CA. Below is the function in Views.
+Although not related to chemical inventory, my app connects to an API, parses through the JSON, and displays the current temperature in San Jose, CA. Below is the function in Views.
 
 ```
 def inventory_api(request):
@@ -75,5 +75,14 @@ def inventory_api(request):
     return render(request, 'Inventory/inventory_api.html', content)
 ```
 
-### Web Scrapping
+### Web Scraping
+Web scraping done with Beautiful Soup. The HTML page is then parsed and the content in displayed on the web-page. Here is the function is Views.
 
+```
+def inventory_bs(request):
+    page = requests.get("https://www.crummy.com/software/BeautifulSoup/bs4/doc/")
+    soup = BeautifulSoup(page.content, 'html.parser')
+    info = soup.find_all('p')[0].get_text()
+    content = {"info": info}
+    return render(request, 'Inventory/inventory_bs.html', content)
+```
